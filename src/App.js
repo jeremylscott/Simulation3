@@ -5,6 +5,7 @@ import store from './ducks/store'
 import Home from './components/Home/Home'
 import Dashboard from './components/Dashboard/Dashboard'
 import NewForm from './components/NewForm/NewForm'
+import PostInfo from './components/PostInfo/PostInfo'
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
           <div>
             <Route exact path='/' component={Home}/>
             <Route path='/dashboard' component={Dashboard}/>
-            <Route path='/newForm' component={NewForm}/>
+            <Route path='/newform' component={NewForm}/>
+            <Route path='/postinfo/:id' component={PostInfo}/>
           </div>
         </Router>
       </Provider>

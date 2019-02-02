@@ -12,7 +12,7 @@ const getPosts = (req,res) => {
     })
 }
 
-const addPosts = (req,res) => {
+const addPost = (req,res) => {
     const db = req.app.get('db')
     db.add_post(title,user_img,content)
     .then(response => {
@@ -73,6 +73,22 @@ const login = (req,res) => {
     })
 }
 
+const register = async (req,res) => {
+    console.log('hit');
+    const db = req.app.get('db')
+    const hash = await bcrypt.hash(req.body.password,10)
+
+    try {
+    const {username} = req.body
+    const response = await db.add_user({username, password: hash})
+    res.json({username: response[0].username})
+    }
+    catch(e) {
+        console.log(e)
+        res.status(401).json('An error occurred - signup')
+    }
+}
+
 const findPostAmount = (req,res) => {
     const db = req.app.get('db')
     db.get_user_posts(req.params.id)
@@ -87,9 +103,10 @@ const findPostAmount = (req,res) => {
 
  module.exports = {
      getPosts,
-     addPosts,
+     addPost,
      editPost,
      deletePost,
      login,
-     findPostAmount
+     findPostAmount,
+     register
  }

@@ -1,0 +1,52 @@
+.post-wrapper {
+    display: flex;
+    box-shadow: 2px 2px 2px 2px gray;
+    width: 70vw;
+    height: 12vh;
+    position: relative;
+    right: 0;
+    left: 0;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    margin-top: 3vh;
+}
+
+.title {
+    font-size: 1.5em;
+    padding-left: 1vw;
+}
+
+.user {
+    margin-left: 55vw;
+    margin-top: 9vh;
+}
+
+.image {
+    width: 50px;
+    length: 50px;
+    border-radius: 50%;
+    margin-right: 3vw;
+}
+
+.main-display {
+    background: gray;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+}
+
+.middle-display {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    width: 74vw;
+    height: 80vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: white;
+    length: auto;
+}

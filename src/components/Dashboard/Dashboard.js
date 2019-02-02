@@ -1,19 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import './dashboard.scss'
+import {getPosts} from '../../ducks/reducer'
 
 class Dashboard extends Component {
 
+    componentDidMount() {
+        this.props.getPosts()
+    }
+
     render() {
-        const {id,title,user_img} = this.props.posts
-        const {userid,username,password} = this.props.user
+        const {user_img} = this.props.posts
+        const {username} = this.props.user
+        console.log(this.props.user.username);
         let posts = this.props.posts.map(e => {
             return (
-                <div className='post-wrapper' key={e.id}>
-                    <p>{e.title}</p>
-                    <p>{username}</p>
-                    <img src={e.user_img} alt='user'/>
-                </div>
+                <Link to={`/postinfo/${e.id}`}><div className='post-wrapper' key={e.id}>
+                    <p className='title'>{e.title}</p>
+                    <p className='user'>by {this.props.user.username}</p>
+                    <img src={e.user_img} className='image' alt='user'/>
+                </div></Link>
             )
         })
         return (
@@ -42,4 +49,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps,{getPosts})(Dashboard)
