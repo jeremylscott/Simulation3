@@ -6,42 +6,59 @@ const initialState = {
     image: '',
     title: '',
     content: '',
-    posts: []
+    posts: [],
+    postsMade: ''
 }
 
 // action types
 const LOGIN = 'LOGIN'
-const UPDATE_POST = 'UPDATE_POST'
+const GET_POSTS = 'GET_POSTS'
+const EDIT_POST = 'EDIT_POST'
 const DELETE_POST = 'DELETE_POST'
 const ADD_POST = 'ADD_POST'
-
+const FIND_POST_AMOUNT = 'FIND_POST_AMOUNT'
 
 // action creators
+
+export function findPostAmount(id) {
+    return {
+        type: FIND_POST_AMOUNT,
+        payload: axios.get(`/api/amount/${id}`)
+    }
+}
+
 export function login(username,password) {
     return {
         type: LOGIN,
-        payload: axios.post(`/auth/login`, {username,password})
+        payload: axios.post('/api/login', {username,password})
     }
 }
 
-export function update_post(userid, title) {
+export function getPosts() {
     return {
-        type: UPDATE_POST,
-        payload: axios.put(`/api/post/${userid}`, title)
+        type: GET_POSTS,
+        payload: axios.get('/api/post')
     }
 }
 
-export function delete_post(userid) {
+export function editPost(id, title) {
+    return {
+        type: EDIT_POST,
+        payload: axios.put(`/api/post/${id}`, title)
+    }
+}
+
+export function deletePost(id) {
     return {
         type: DELETE_POST,
-        payload: axios.delete(`/api/delete/${userid}`)
+        payload: axios.delete(`/api/post/${id}`)
     }
 }
 
-export function add_post(title,image,content) {
+export function addPost(title,user_img,content) {
     return {
         type: ADD_POST,
-        payload: axios.post(`/api/post`, {title,image,content})
+        payload: axios.post(`/api/post`, {title,user_img,content})
     }
 }
 
@@ -53,7 +70,15 @@ function reducer(state=initialState, action) {
             return {
                 ...state, user: action.payload.data
             }
-        case `${UPDATE_POST}_FULFILLED`:
+        case `${FIND_POST_AMOUNT}_FULFILLED`:
+            return {
+                ...state, postsMade: action.payload.data
+            }
+        case `${GET_POSTS}_FULFILLED`:
+            return {
+                ...state, posts: action.payload.data
+            }
+        case `${EDIT_POST}_FULFILLED`:
             return {
                 ...state, posts: action.payload.data
             }

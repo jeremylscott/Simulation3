@@ -42,4 +42,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, )(Dashboard)
+export default connect(mapStateToProps)(Dashboard)

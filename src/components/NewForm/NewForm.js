@@ -15,4 +15,4 @@ class NewForm extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, )(NewForm)
+export default connect(mapStateToProps)(NewForm)

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './home.scss'
+import {login} from '../../ducks/reducer'
 
 class Home extends Component {
     constructor(props) {
@@ -47,4 +48,4 @@ class Home extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, )(Home)
+export default connect(mapStateToProps,{login})(Home)

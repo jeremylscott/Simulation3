@@ -4,8 +4,7 @@ const {json} = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
 const app = express()
-const {} = require('./controller')
-const {getPosts,addPost,editPost,deletePost} = require('./controller')
+const {getPosts,addPost,editPost,deletePost,login,findPostAmount} = require('./controller')
 
 app.use(json())
 
@@ -28,13 +27,15 @@ app.use(session({
 }))
 
 
-app.get('/api/posts', getPosts)
+app.get('/api/post', getPosts)
+app.get('/api/amount/:id', findPostAmount)
 
-app.post('/api/posts', addPost)
+app.post('/api/post', addPost)
+app.post('/api/login', login)
 
-app.put('/api/posts', editPost)
+app.put('/api/post/:id', editPost)
 
-app.delete('/api/posts', deletePost)
+app.delete('/api/post/:id', deletePost)
 
 
 app.listen(process.env.PORT, ()=> console.log(`Server listening on port: ${process.env.PORT}`))
