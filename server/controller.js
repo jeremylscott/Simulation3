@@ -12,7 +12,20 @@ const getPosts = (req,res) => {
     })
 }
 
+const getPostInfo = (req,res) => {
+    const db = req.app.get('db')
+    db.get_post_info(id)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json('Post was not found')
+        console.log(err);
+    })
+}
+
 const addPost = (req,res) => {
+    const {title,user_img,content} = req.body 
     const db = req.app.get('db')
     db.add_post(title,user_img,content)
     .then(response => {
@@ -26,7 +39,7 @@ const addPost = (req,res) => {
 
 const editPost = (req,res) => {
     const db = req.app.get('db')
-    db.edit_post(req.params.id,title)
+    db.edit_post(req.params.id, req.body.title)
     .then(response => {
         res.status(200).json(response)
     })
@@ -69,17 +82,14 @@ const login = (req,res) => {
                 res.status(401).json('Incorrect password')
             }
         }
-        console.log(req.session.user);
     })
 }
 
 const logout = (req,res) => {
     req.session.destroy()
-    console.log(req.session);
 }
 
 const register = async (req,res) => {
-    console.log(req.body);
     const db = req.app.get('db')
     const hash = await bcrypt.hash(req.body.password,10)
 
@@ -114,5 +124,6 @@ const findPostAmount = (req,res) => {
      login,
      findPostAmount,
      register,
-     logout
+     logout,
+     getPostInfo
  }

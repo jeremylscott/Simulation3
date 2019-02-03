@@ -4,7 +4,7 @@ const {json} = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
 const app = express()
-const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout} = require('./controller')
+const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout,getPostInfo} = require('./controller')
 
 app.use(json())
 
@@ -30,6 +30,7 @@ app.use(session({
 app.get('/api/post', getPosts)
 app.get('/api/amount/:id', findPostAmount)
 app.get('/api/logout', logout)
+app.get('/api/postinfo', getPostInfo)
 
 app.post('/api/post', addPost)
 app.post('/api/login', login)

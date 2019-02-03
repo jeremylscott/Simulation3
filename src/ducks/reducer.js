@@ -3,9 +3,13 @@ import axios from 'axios'
 const initialState = {
     user: {},
     title: '',
+    user_img: '',
+    id: '',
+    username: '',
     content: '',
     posts: [],
-    postsMade: ''
+    postsMade: '',
+    postInfo: ''
 }
 
 // action types
@@ -13,16 +17,40 @@ const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 const REGISTER = 'REGISTER'
 const GET_POSTS = 'GET_POSTS'
+const GET_POST_INFO = 'GET_POST_INFO'
 const EDIT_POST = 'EDIT_POST'
 const DELETE_POST = 'DELETE_POST'
 const ADD_POST = 'ADD_POST'
 const FIND_POST_AMOUNT = 'FIND_POST_AMOUNT'
+const UPDATE_TITLE = 'UPDATE_TITLE'
+const STATE_UPDATE = 'STATE_UPDATE'
 
 // action creators
 export function findPostAmount(id) {
     return {
         type: FIND_POST_AMOUNT,
         payload: axios.get(`/api/amount/${id}`)
+    }
+}
+
+export function stateUpdate(posts) {
+    return {
+        type: STATE_UPDATE,
+        payload: posts
+    }
+}
+
+export function getPostInfo(id) {
+    return {
+        type: GET_POST_INFO,
+        payload: axios.get(`/api/postinfo/${id}`)
+    }
+}
+
+export function updateTitle(title) {
+    return {
+        type: UPDATE_TITLE,
+        payload: title
     }
 }
 
@@ -54,10 +82,10 @@ export function getPosts() {
     }
 }
 
-export function editPost(id, title) {
+export function editPost(id,title) {
     return {
         type: EDIT_POST,
-        payload: axios.put(`/api/post/${id}`, title)
+        payload: axios.put(`/api/post/${id}`, {title})
     }
 }
 
@@ -99,6 +127,14 @@ function reducer(state=initialState, action) {
             return {
                 ...state, posts: action.payload.data
             }
+        case `${GET_POST_INFO}_FULFILLED`:
+            return {
+                ...state, postInfo: action.payload.data
+            }
+        case UPDATE_TITLE:
+            return {
+                ...state, title: action.payload
+            }
         case `${EDIT_POST}_FULFILLED`:
             return {
                 ...state, posts: action.payload.data
@@ -110,6 +146,14 @@ function reducer(state=initialState, action) {
         case `${ADD_POST}_FULFILLED`:
             return {
                 ...state, posts: action.payload.data
+            }
+        case STATE_UPDATE:
+            return {
+                ...state, user_img: action.payload.user_img,
+                        username: action.payload.username,
+                        id: action.payload.id,
+                        posts: action.payload,
+                        title: action.payload.title
             }
 
         default: return state;

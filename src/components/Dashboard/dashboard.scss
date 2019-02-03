@@ -33,19 +33,19 @@
     margin: auto;
     width: 48vw;
     height: 5vh;
-    left: -3vw;
+    left: -2vw;
 }
 
 .user {
     position: relative;
-    margin-top: 6vh;
+    margin-top: 4vh;
     right: 1vw;
     width: 6vw;
 }
 
 .image {
     width: 45px;
-    length: 30px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 3vw;
     box-shadow: 0 0 10px gray;
@@ -70,7 +70,6 @@
     right: 0;
     margin: auto;
     background: white;
-    length: auto;
     box-shadow: 0 1px 3px 0 gray;
     overflow: scroll;
 }
@@ -170,15 +169,15 @@
 
 .home-image {
     width: 40px;
-    length: 40px
+    height: 40px
 }
 
 .new-image {
     width: 40px;
-    length: 40px
+    height: 40px
 }
 
 .log-out-image {
     width: 40px;
-    length: 40px
+    height: 40px
 }

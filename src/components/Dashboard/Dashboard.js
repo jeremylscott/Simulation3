@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './dashboard.scss'
-import {getPosts,logout,deletePost} from '../../ducks/reducer'
+import {getPosts,logout,deletePost,stateUpdate} from '../../ducks/reducer'
 import search from '../../images/searchIcon.png'
 import house from '../../images/house.png'
 import newpost from '../../images/edit.png'
@@ -19,7 +19,8 @@ class Dashboard extends Component {
 
         let posts = this.props.posts.map(e => {
             return (
-                <Link to={`/postinfo/${e.id}`} className='link-post'><div className='post-wrapper' key={e.id}>
+                <Link to={`/postinfo/${e.id}`} className='link-post'><div onClick={() => this.props.stateUpdate(e)} 
+                    className='post-wrapper' key={e.id}>
                     <span className='title'>{e.title}</span>
                     <span className='user'>by: {this.props.user.username}</span>
                     <img src={e.user_img} className='image' alt='user'/>
@@ -36,7 +37,7 @@ class Dashboard extends Component {
                         <span>{username}</span>
                     </div>
                     <div className='home-edit-cont'>
-                        <Link to='/'><img src={house}className='home-image' alt='houseIcon'/></Link>
+                        <Link to='/dashboard'><img src={house}className='home-image' alt='houseIcon'/></Link>
                         <Link to='/newform'><img src={newpost} className='new-image' alt='newIcon'/></Link>
                     </div>
                     <div className='logoutCont' onClick={this.props.logout}>
@@ -60,4 +61,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps,{getPosts,logout,deletePost})(Dashboard)
+export default connect(mapStateToProps,{getPosts,logout,deletePost,stateUpdate})(Dashboard)
