@@ -33,10 +33,10 @@ export function logout() {
     }
 }
 
-export function register(username,password) {
+export function register(username,password,user_img) {
     return {
         type: REGISTER,
-        payload: axios.post('/api/register', {username,password})
+        payload: axios.post('/api/register', {username,password,user_img})
     }
 }
 

@@ -79,13 +79,13 @@ const logout = (req,res) => {
 }
 
 const register = async (req,res) => {
-    console.log('hit');
+    console.log(req.body);
     const db = req.app.get('db')
     const hash = await bcrypt.hash(req.body.password,10)
 
     try {
-    const {username} = req.body
-    const response = await db.add_user({username, password: hash})
+    const {username,user_img} = req.body
+    const response = await db.add_user({username, password: hash, user_img})
     res.json({username: response[0].username})
     }
     catch(e) {

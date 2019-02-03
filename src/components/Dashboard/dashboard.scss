@@ -11,6 +11,16 @@
     margin-top: 3vh;
 }
 
+.deleteButton {
+    border: none;
+    background: white;
+    position: relative;
+    top: -4vh;
+    right: 0;
+    z-index: 55;
+    cursor: pointer;
+}
+
 .link-post {
     text-decoration: none;
     color: black;
@@ -117,7 +127,7 @@
     background-image: linear-gradient(to bottom, #ff8990, #ff8990, #ff8a8f, #ff8a8f, #ff8a8f, #ff8892, #ff8795, #ff8598, #ff829f, #ff7fa8, #ff7db1, #ff7cba);}
 
 .user-image {
-    height: 50px;
+    height: 65px;
     width: 65px;
     position: relative;
     z-index: 10;
@@ -129,7 +139,7 @@
     display: flex;
     flex-direction: column;
     width: 6vw;
-    height: 12vh;
+    height: 15vh;
     margin-top: 4vh;
     justify-content: space-between;
     align-items: center;
@@ -163,7 +173,7 @@
     length: 40px
 }
 
-.edit-image {
+.new-image {
     width: 40px;
     length: 40px
 }

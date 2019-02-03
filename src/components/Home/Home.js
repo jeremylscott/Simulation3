@@ -26,7 +26,11 @@ class Home extends Component {
     }
 
     handleReg = (e) => {
-        this.props.register(this.state.username,this.state.password)
+        this.props.register(this.state.username,this.state.password,this.state.image)
+
+        setTimeout(() => {
+            window.location.reload()
+        }, 500);
     }
 
     render() {

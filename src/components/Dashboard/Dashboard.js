@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './dashboard.scss'
-import {getPosts,logout} from '../../ducks/reducer'
+import {getPosts,logout,deletePost} from '../../ducks/reducer'
 import search from '../../images/searchIcon.png'
 import house from '../../images/house.png'
-import edit from '../../images/edit.png'
+import newpost from '../../images/edit.png'
 import logPic from '../../images/logout.png'
 
 class Dashboard extends Component {
@@ -15,8 +15,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {username,user_img} = this.props.user
-        console.log(this.props.user)
+        const {username} = this.props.user
 
         let posts = this.props.posts.map(e => {
             return (
@@ -24,6 +23,8 @@ class Dashboard extends Component {
                     <span className='title'>{e.title}</span>
                     <span className='user'>by: {this.props.user.username}</span>
                     <img src={e.user_img} className='image' alt='user'/>
+                    <Link to='/dashboard'><button onClick={() => {this.props.deletePost(e.id)
+                         window.location.reload()}} className='deleteButton'>X</button></Link>
                 </div></Link>
             )
         })
@@ -35,11 +36,11 @@ class Dashboard extends Component {
                         <span>{username}</span>
                     </div>
                     <div className='home-edit-cont'>
-                        <img src={house}className='home-image' alt='houseIcon'/>
-                        <img src={edit} className='edit-image' alt='editIcon'/>
+                        <Link to='/'><img src={house}className='home-image' alt='houseIcon'/></Link>
+                        <Link to='/newform'><img src={newpost} className='new-image' alt='newIcon'/></Link>
                     </div>
                     <div className='logoutCont' onClick={this.props.logout}>
-                        <img src={logPic} className='log-out-image' alt='logout'/>
+                        <Link to='/'><img src={logPic} className='log-out-image' alt='logout'/></Link>
                     </div>
                 </div>
                 <div className='searchCont'>
@@ -59,4 +60,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps,{getPosts,logout})(Dashboard)
+export default connect(mapStateToProps,{getPosts,logout,deletePost})(Dashboard)
