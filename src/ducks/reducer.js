@@ -10,6 +10,7 @@ const initialState = {
 
 // action types
 const LOGIN = 'LOGIN'
+const LOGOUT = 'LOGOUT'
 const REGISTER = 'REGISTER'
 const GET_POSTS = 'GET_POSTS'
 const EDIT_POST = 'EDIT_POST'
@@ -22,6 +23,13 @@ export function findPostAmount(id) {
     return {
         type: FIND_POST_AMOUNT,
         payload: axios.get(`/api/amount/${id}`)
+    }
+}
+
+export function logout() {
+    return {
+        type: LOGOUT,
+        payload: axios.get(`/api/logout`)
     }
 }
 
@@ -74,6 +82,10 @@ function reducer(state=initialState, action) {
         case `${LOGIN}_FULFILLED`:
             return {
                 ...state, user: action.payload.data
+            }
+        case `${LOGOUT}_FULFILLED`:
+            return {
+                ...state, user: {}
             }
         case `${REGISTER}_FULFILLED`:
             return {

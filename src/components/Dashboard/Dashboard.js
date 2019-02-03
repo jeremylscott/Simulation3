@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './dashboard.scss'
-import {getPosts} from '../../ducks/reducer'
+import {getPosts,logout} from '../../ducks/reducer'
+import search from '../../images/searchIcon.png'
+import house from '../../images/house.png'
+import edit from '../../images/edit.png'
+import logPic from '../../images/logout.png'
 
 class Dashboard extends Component {
 
@@ -11,14 +15,14 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {user_img} = this.props.posts
-        const {username} = this.props.user
-        console.log(this.props.user.username);
+        const {username,user_img} = this.props.user
+        console.log(this.props.user)
+
         let posts = this.props.posts.map(e => {
             return (
-                <Link to={`/postinfo/${e.id}`}><div className='post-wrapper' key={e.id}>
-                    <p className='title'>{e.title}</p>
-                    <p className='user'>by {this.props.user.username}</p>
+                <Link to={`/postinfo/${e.id}`} className='link-post'><div className='post-wrapper' key={e.id}>
+                    <span className='title'>{e.title}</span>
+                    <span className='user'>by: {this.props.user.username}</span>
                     <img src={e.user_img} className='image' alt='user'/>
                 </div></Link>
             )
@@ -26,17 +30,23 @@ class Dashboard extends Component {
         return (
             <div className='main-display'>
                 <div className='left-side-column'>
-                    <image src={user_img} className='user-image' alt='user'/>
-                    <image className='home-image'/>
-                    <image className='edit-image'/>
-                    <p>{username}</p>
-                    <image className='log-out-image'/>
+                    <div className='imageCont'>
+                        <img src={this.props.user.user_img} className='user-image' alt='user'/>
+                        <span>{username}</span>
+                    </div>
+                    <div className='home-edit-cont'>
+                        <img src={house}className='home-image' alt='houseIcon'/>
+                        <img src={edit} className='edit-image' alt='editIcon'/>
+                    </div>
+                    <div className='logoutCont' onClick={this.props.logout}>
+                        <img src={logPic} className='log-out-image' alt='logout'/>
+                    </div>
                 </div>
-                <div>
+                <div className='searchCont'>
                     <input className='search-bar' placeholder='Search by Title'/>
-                    <div className='search-icon'></div>
+                    <img src={search} className='search-icon' alt='magnifyGlass'/>
                     <div className='reset-butt-cont'><button className='reset-button'>Reset</button></div>
-                    <span>My Posts</span>
+                    <span className='my-posts'>My Posts</span>
                     <input type='checkbox'/>
                 </div>
                 <div className='middle-display'>
@@ -49,4 +59,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps,{getPosts})(Dashboard)
+export default connect(mapStateToProps,{getPosts,logout})(Dashboard)

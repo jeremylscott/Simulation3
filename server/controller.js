@@ -73,6 +73,11 @@ const login = (req,res) => {
     })
 }
 
+const logout = (req,res) => {
+    req.session.destroy()
+    console.log(req.session);
+}
+
 const register = async (req,res) => {
     console.log('hit');
     const db = req.app.get('db')
@@ -108,5 +113,6 @@ const findPostAmount = (req,res) => {
      deletePost,
      login,
      findPostAmount,
-     register
+     register,
+     logout
  }
