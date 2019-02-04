@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './home.scss'
-import {login,register} from '../../ducks/reducer'
+import {login,register,findPostAmount} from '../../ducks/reducer'
 import smile from '../../images/smile.png'
 
 class Home extends Component {
@@ -24,6 +24,7 @@ class Home extends Component {
 
     handleLog = () => {
         this.props.login(this.state.username,this.state.password)
+        this.props.findPostAmount(this.state.username)
     }
 
     handleReg = (e) => {
@@ -70,4 +71,4 @@ class Home extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps,{login,register})(Home)
+export default connect(mapStateToProps,{login,register,findPostAmount})(Home)

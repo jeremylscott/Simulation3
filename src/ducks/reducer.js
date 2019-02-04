@@ -25,6 +25,7 @@ const FIND_POST_AMOUNT = 'FIND_POST_AMOUNT'
 const UPDATE_TITLE = 'UPDATE_TITLE'
 const STATE_UPDATE = 'STATE_UPDATE'
 
+
 // action creators
 export function findPostAmount(id) {
     return {

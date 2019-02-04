@@ -4,7 +4,8 @@ const {json} = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
 const app = express()
-const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout,getPostInfo,queryPost} = require('./controller')
+const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout,getPostInfo,
+        queryPost} = require('./controller')
 
 app.use(json())
 

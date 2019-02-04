@@ -35,6 +35,7 @@ class Dashboard extends Component {
                     <div className='imageCont'>
                         <img src={this.props.user.user_img} className='user-image' alt='user'/>
                         <span>{username}</span>
+                        <p>Posts: {this.props.postsMade.length}</p>
                     </div>
                     <div className='home-edit-cont'>
                         <Link to='/dashboard'><img src={house}className='home-image' alt='houseIcon'/></Link>

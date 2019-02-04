@@ -101,6 +101,7 @@ const login = (req,res) => {
 
 const logout = (req,res) => {
     req.session.destroy()
+    console.log(req.session + 'hit logout');
 }
 
 const register = async (req,res) => {
