@@ -37,6 +37,7 @@ class Home extends Component {
 
     render() {
         const {username,password,image} = this.state
+        console.log(this.props)
         return (
             <div className='mainDisplay'>
                 <div className='centerDisplay'>
