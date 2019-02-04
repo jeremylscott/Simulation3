@@ -12,6 +12,18 @@ const getPosts = (req,res) => {
     })
 }
 
+const queryPost = (req,res) => {
+    const db = req.app.get('db')
+    db.get_specific_posts(req.query.title)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json('Error with query')
+        console.log(err);
+    })
+}
+
 const getPostInfo = (req,res) => {
     const db = req.app.get('db')
     db.get_post_info(id)
@@ -47,6 +59,7 @@ const editPost = (req,res) => {
         res.status(500).json('Error editing post')
         console.log(err);
     })
+    console.log(req.session.user.username + ' is still on session');
 }
 
 const deletePost = (req,res) => {
@@ -82,6 +95,7 @@ const login = (req,res) => {
                 res.status(401).json('Incorrect password')
             }
         }
+        console.log(req.session.user.username + ' is on session');
     })
 }
 
@@ -125,5 +139,6 @@ const findPostAmount = (req,res) => {
      findPostAmount,
      register,
      logout,
-     getPostInfo
+     getPostInfo,
+     queryPost
  }

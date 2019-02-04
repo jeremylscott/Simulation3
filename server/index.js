@@ -4,7 +4,7 @@ const {json} = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
 const app = express()
-const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout,getPostInfo} = require('./controller')
+const {getPosts,addPost,editPost,deletePost,login,findPostAmount,register,logout,getPostInfo,queryPost} = require('./controller')
 
 app.use(json())
 
@@ -20,7 +20,7 @@ massive(process.env.CONNECTION_STRING)
 app.use(session({
     secret: process.env.SECRET,
     resave: true,
-    saveUnitialized: false,
+    saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -29,6 +29,7 @@ app.use(session({
 
 app.get('/api/post', getPosts)
 app.get('/api/amount/:id', findPostAmount)
+app.get('/api/posts', queryPost)
 app.get('/api/logout', logout)
 app.get('/api/postinfo', getPostInfo)
 

@@ -40,7 +40,7 @@ class Home extends Component {
             <div className='mainDisplay'>
                 <div className='centerDisplay'>
                     <div className='smiley'>
-                        <img src={smile} className='smile-pic'/>
+                        <img src={smile} className='smile-pic' alt='smiley face'/>
                         <h1>Helo</h1>
                     </div>
                     <div className='userCont'>

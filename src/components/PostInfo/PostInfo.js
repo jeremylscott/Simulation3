@@ -6,8 +6,8 @@ import './postinfo.scss'
 
 class PostInfo extends Component {
 
-    componentDidUpdate(prevProps) {
-        if(prevProps !== this.props) {
+    componentDidUpdate(previousProps) {
+        if(previousProps !== this.props) {
             this.forceUpdate()
         }
     }
