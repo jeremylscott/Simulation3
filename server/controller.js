@@ -59,7 +59,6 @@ const editPost = (req,res) => {
         res.status(500).json('Error editing post')
         console.log(err);
     })
-    console.log(req.session.user.username + ' is still on session');
 }
 
 const deletePost = (req,res) => {
@@ -95,13 +94,11 @@ const login = (req,res) => {
                 res.status(401).json('Incorrect password')
             }
         }
-        console.log(req.session.user.username + ' is on session');
     })
 }
 
 const logout = (req,res) => {
     req.session.destroy()
-    console.log(req.session + 'hit logout');
     res.status(200).json('Successfully logged out.')
 }
 
