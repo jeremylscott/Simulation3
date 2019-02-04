@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './home.scss'
 import {login,register} from '../../ducks/reducer'
+import smile from '../../images/smile.png'
 
 class Home extends Component {
     constructor(props) {
@@ -38,11 +39,13 @@ class Home extends Component {
         return (
             <div className='mainDisplay'>
                 <div className='centerDisplay'>
-                    <div className='smiley'></div>
-                    <h1>Helo</h1>
+                    <div className='smiley'>
+                        <img src={smile} className='smile-pic'/>
+                        <h1>Helo</h1>
+                    </div>
                     <div className='userCont'>
                         <p>Username:</p>
-                        <input onChange={this.handleChange} type='text' name='username' className='useNameInput' 
+                        <input onChange={this.handleChange} type='text' name='username' className='userNameInput' 
                             value={username} placeholder='Username'/>
                     </div>
                     <div className='passCont'>
